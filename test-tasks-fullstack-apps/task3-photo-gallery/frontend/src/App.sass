@@ -1,0 +1,34 @@
+.container 
+    margin: auto
+    max-width: 1024px
+
+.header
+  padding-top: .5em
+  padding-bottom: .5em
+  border: 1px solid #a2a2a2
+  background-color: #f4f4f4b9
+  -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75)
+  -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75)
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75)
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+
+main
+  margin-top: 20px
+  
+@media (min-width: 769px)
+  .header
+    display: flex
+
+  .header
+    flex-direction: column
+    align-items: center
+    width: 80%
+    margin: 0 auto
+    max-width: 1150px
+
+@media (min-width: 1025px)
+  .header
+    flex-direction: row
+    justify-content: space-between
