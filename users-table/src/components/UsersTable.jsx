@@ -14,6 +14,7 @@ export default function UsersTable() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({});
 
+  const [error, setError] = useState("");
   useEffect(() => {
     setLoad(true);
     const fetchData = async () => {
@@ -23,11 +24,12 @@ export default function UsersTable() {
         setLoad(false);
       } catch (error) {
         console.log(error);
+        setError(error.message);
+        setLoad(false);
       }
     };
     fetchData();
   }, []);
-
 
   //search
 
@@ -38,7 +40,7 @@ export default function UsersTable() {
         const users = await searchUsers(value);
         setUsers(users);
       } catch (error) {
-        console.log(error);
+        setError(error.message);
       }
     }, 500);
   }
@@ -103,11 +105,13 @@ export default function UsersTable() {
   function closeModal() {
     setIsOpen(false);
   }
-  
+
   return (
-    <div>
+    <>
       {load ? (
         <span style={{ color: "white" }}>loading...</span>
+      ) : error ? (
+        <p className={styles.error}>{error + " перезагрузите страницу"}</p>
       ) : (
         <>
           <Search
@@ -130,6 +134,6 @@ export default function UsersTable() {
           {isOpen && <Modal user={user} close={closeModal}></Modal>}
         </>
       )}
-    </div>
+    </>
   );
 }
